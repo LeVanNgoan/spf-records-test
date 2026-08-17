@@ -1,0 +1,39 @@
+plugins { id 'com.android.application' }
+
+android {
+    namespace 'vn.orderrecorder.shopee'
+    compileSdk 35
+
+    defaultConfig {
+        applicationId 'vn.orderrecorder.shopee'
+        minSdk 24
+        targetSdk 35
+        versionCode 26
+        versionName '2.0.6'
+    }
+
+    signingConfigs {
+        internalTest {
+            storeFile file('../keystore/order-recorder-test.jks')
+            storePassword 'orderrecorder'
+            keyAlias 'orderrecorder'
+            keyPassword 'orderrecorder'
+        }
+    }
+
+    buildTypes {
+        debug {
+            signingConfig signingConfigs.internalTest
+        }
+        release {
+            signingConfig signingConfigs.internalTest
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+}
